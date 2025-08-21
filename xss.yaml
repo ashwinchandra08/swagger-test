@@ -7,7 +7,7 @@ info:
           <! ${
         </style>
         }
-        <foo-b id="><img src=x id="</img><img src=x onerror=alert('mXSS')'>">pwned</foo-b>
+        <foo-b id="><img src=x id="</img><img src=x ontoggle="alert(String.fromCharCode(88,83,83))'>">pwned</foo-b>
       </a></table></li></mi></foo-test></math>
 paths:
   /phished:
@@ -19,6 +19,7 @@ paths:
         - accounts
       operationId: findAccounts
       summary: Finds all accounts
+
 
 
 
