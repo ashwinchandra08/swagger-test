@@ -2,7 +2,13 @@ swagger: '2.0'
 info:
   title: Example YAML.spec
   description: |
-    <foo-x id="><svg><script>alert(1337)</script>">
+    <math><foo-test><mi><li><table><foo-test><li></li></foo-test><a>
+        <style>
+          <! ${
+        </style>
+        }
+        <foo-b id="><img src=x id="</img><img src=x onerror=alert('mXSS')'>">pwned</foo-b>
+      </a></table></li></mi></foo-test></math>
 paths:
   /phished:
     get:
@@ -13,6 +19,7 @@ paths:
         - accounts
       operationId: findAccounts
       summary: Finds all accounts
+
 
 
 
