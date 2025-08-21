@@ -2,13 +2,7 @@ swagger: '2.0'
 info:
   title: Example YAML.spec
   description: |
-    <math><foo-test><mi><li><table><foo-test><li></li></foo-test><a>
-        <style>
-          <! ${
-        </style>
-        }
-        <foo-b id="><img src onerror='alert(\"mXSS-by-GitHubPages\")'>">pwned</foo-b>
-      </a></table></li></mi></foo-test></math>
+    <math><table><tr><td><svg><a><animate onbegin=alert(1) attributeName=x dur=1s repeatCount=indefinite></a></svg></td></tr></table></math>
 paths:
   /accounts:
     get:
@@ -19,5 +13,6 @@ paths:
         - accounts
       operationId: findAccounts
       summary: Finds all accounts
+
 
 
