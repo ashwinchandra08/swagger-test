@@ -1,10 +1,15 @@
-swagger: "2.0",
-info: 
-  title: "Swagger Sample App",
-  description: "Please to click Terms of service"
-  termsOfService: "javascript:alert(1)"
-  contact: 
-    name: "API Support",
-    url: "javascript:alert(1)",
-    email: "javascript:alert(1)"
-  version: "1.0.1"
+swagger: '2.0'
+info:
+  title: Example YAML.spec
+  description: |
+    <h1 style="color:red;font-family:sans-serif;">This has been poisoned</h1>
+paths:
+  /phished:
+    get:
+      responses:
+        '200':
+          description: No response was specified
+      tags:
+        - accounts
+      operationId: findAccounts
+      summary: Finds all accounts
