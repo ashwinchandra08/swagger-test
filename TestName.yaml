@@ -1,0 +1,13 @@
+$integration: http://ibm.com/appconnect/integration/v2/integrationFile
+integration:
+  type: api
+  trigger-interfaces:
+    trigger-interface-1:
+      triggers: {}
+      options:
+        resources: []
+      type: api-trigger
+  action-interfaces: {}
+  assemblies: {}
+  name: TestName
+models: {}
