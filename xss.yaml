@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   title: Example YAML.spec
   description: |
-  <svg><annotation-xml><foreignobject><style><!--</style><p id="--><img src='x' onerror='alert(1)'>">
+  <svg><annotation-xml><foreignobject><style><!--</style>
   termsOfService: "http://169.38.106.74/48ag25vkwf7x151kd3tl7xf5rwxnle93"
   version: production
 basePath: /JSSResource/
@@ -19,6 +19,7 @@ paths:
         - accounts
       operationId: findAccounts
       summary: Finds all accounts
+
 
 
 
